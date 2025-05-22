@@ -45,11 +45,9 @@ app.get("/secretWord", (req, res) => {
   if (!req.session.secretWord) {
     req.session.secretWord = "syzygy";
   }
-  res.render("secretWord", {
-    secretWord: req.session.secretWord,
-    errors: req.flash("error"),
-    info: req.flash("info"),
-  });
+  res.locals.info = req.flash("info");
+  res.locals.errors = req.flash("error");
+  res.render("secretWord", { secretWord: req.session.secretWord });
 });
 
 
